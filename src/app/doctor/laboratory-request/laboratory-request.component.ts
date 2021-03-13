@@ -20,6 +20,7 @@ export class LaboratoryRequestComponent implements OnInit {
   myControl = new FormControl();
   serchlist = new Array();
   listdrug: any[];
+  name:any = [];
   value='';
 
 
@@ -46,6 +47,7 @@ export class LaboratoryRequestComponent implements OnInit {
   }
   onSearchChange(event: any) {
     const key = event.target.value;
+    this.name=key;
     this.serchlist=[];
     this.listdrug.forEach(item => {
       if(key == ""){

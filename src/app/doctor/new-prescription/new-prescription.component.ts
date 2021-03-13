@@ -35,7 +35,9 @@ export class NewPrescriptionComponent implements OnInit {
   listItem:any;
   myform:any;
   title="";
-  favariteList:any[];
+  favariteList:any;
+  json='';
+  fava:any;
   constructor(
       private route: ActivatedRoute,
       private  _service: PrescriptionServicesService,
@@ -48,6 +50,10 @@ export class NewPrescriptionComponent implements OnInit {
       this.pharmacy = params.get('');
       this._service.getdruglist(this.pharmacy).subscribe( res => {
         this.listdrug = res;
+        this.json=localStorage.getItem('item');
+        // this.fava = JSON.parse(this.json);
+        // console.log(this.fava);
+
 
       })
     });
@@ -95,9 +101,7 @@ export class NewPrescriptionComponent implements OnInit {
 
     };
    localStorage.setItem('item',JSON.stringify(content));
-    alert()
     this.listItem.push(content);
-   this.id1='';
   }
   getFrequency(value: any) {
     this.Frequency = value;
@@ -123,21 +127,34 @@ export class NewPrescriptionComponent implements OnInit {
 
   savedata(){
      this._service.inserdruglist(this.listItem).subscribe(res => {
-       alert(res.errorMessage);
+       this.listItem=res;
+       console.log(this.listItem);
+
+       // alert(res.errorMessage);
      })
   }
   GetDetails(content) {
     this.modalService.open(content, { size: 'lg' }).result.then((result) => {
     }, (reason) => {
     });
-  }
-  favLIst() {
-    this.favariteList = this.listItem;
-    alert(this.favariteList);
-    this._service.favariteList(this.favariteList).subscribe(res => {
-      console.log(res)
+
+    this._service.getFavList().subscribe( res => {
+      this.favariteList = res;
+      console.log(this.favariteList);
     })
   }
+  favLIst() {
+    this.fava = JSON.parse(this.json);
+    console.log(this.fava);
+    this._service.favariteList(this.json).subscribe(res => {
+    this.favariteList = res ;
+    console.log(this.favariteList);
+    })
+  }
+  deleteItem(i){
+    this.listItem.splice(i,1)
+  }
+
 
 
 

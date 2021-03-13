@@ -13,7 +13,8 @@ export class PrescriptionServicesService {
   private Url = namedata.API_URL.toString() + '/api/DrugStore/Get_PharmacyList';
   private Urldrug =  namedata.API_URL.toString() + '/api/DrugStore/Get_SalableList';
   private Urlinsert =  namedata.API_URL.toString() + '/api/DrugStore/Create_New_WardRequest';
-  private favUrl = namedata.API_URL.toString() + '/api/DrugStore/Create_New_Practitioner_Drug_Favorite'
+  private favUrl = namedata.API_URL.toString() + '/api/DrugStore/Create_New_Practitioner_Drug_Favorite';
+  private getFavUrl = namedata.API_URL.toString() + '/api/DrugStore/Get_Practitioner_Drug_Favorite';
   constructor(private http: HttpClient) { }
  getService(): Observable <any> {
 
@@ -34,24 +35,34 @@ export class PrescriptionServicesService {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer  ' + localStorage.getItem('token')
         }
-        return this.http.post<any>(this.favUrl, body, {
+        return this.http.post<any>(this.Urldrug, body, {
             headers: headerDict
         })
     }
     favariteList(item:any): Observable <any> {
         const data = {
-            'jsonValue': localStorage.getItem('item'),
+            'jsonValue': item,
         }
-        alert(data)
-        const body = JSON.stringify(data );
+console.log(data)
+        const body = data;
         const headerDict = {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer  ' + localStorage.getItem('token')
         }
         console.log(body);
-        return this.http.post<any>(this.Urlinsert, body, {
+        return this.http.post<any>(this.favUrl, body, {
             headers: headerDict
         })
+    }
+    getFavList(){
+        const headerDict = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer  ' + localStorage.getItem('token')
+        }
+        return this.http.get<any>(this.getFavUrl,  {
+            headers: headerDict
+        })
+
     }
     inserdruglist(list: any): Observable <any> {
         alert(list);
@@ -85,6 +96,7 @@ export class PrescriptionServicesService {
 
         }
         const body = JSON.stringify(data );
+       console.log(body)
         const headerDict = {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer  ' + localStorage.getItem('token')

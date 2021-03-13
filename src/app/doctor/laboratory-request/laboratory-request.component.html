@@ -67,7 +67,7 @@
                     <div class="col-9 d-flex">
                         <form action="" class="example-form">
                             <mat-form-field  class="example-full-width">
-                                <input type="text" class="form-control"  matInput [formControl]="myControl "   (input)="onSearchChange($event)  " value="{{value}} " style="text-align: left">
+                                <input type="text" class="form-control" name="TestName"  matInput [formControl]="myControl "   (input)="onSearchChange($event)  " value="{{value}} " style="text-align: left">
                                 <ul style="text-align: left;height: 150px;overflow-x:hidden;overflow-y: scroll ;list-style: none" *ngIf="serchlist.length >0" >
                                     <li *ngFor="let i of serchlist" (click)="set(i)">
                                         <button style="border: none;background-color: #f5f7fa;font-size: 14px;text-align: left;">{{i}}</button>
@@ -102,14 +102,14 @@
                     <table class="table table-bordered">
                         <tbody style="cursor: pointer">
                         <tr >
-                            <td scope="row" class="hover"  >
-                                CBC,Diff
+                        <tr >
+                            <td scope="row" class="hover" >
+                                CBF
 
                             </td>
-                            <td>Na</td>
+
+                            <td>=</td>
                             <td>test 5</td>
-
-
                         </tr>
 
                         <tr>
@@ -380,7 +380,7 @@
                         <td class="text-center">10 d</td>
                         <td class="text-center">20 # </td>
                         <td style="cursor: pointer;color:#f2911b " class="text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class="bi bi-trash"  viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                             </svg>
