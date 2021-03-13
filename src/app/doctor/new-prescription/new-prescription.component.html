@@ -1,0 +1,360 @@
+<style>
+    ul{
+        list-style: none;
+
+
+    }
+    li{
+        margin-right: 10px;
+    }
+    ul:first-child li {
+        margin: 0;
+    }
+    .orangeBtn{
+        color: white!important;
+        background-color:#f2911b!important;
+        padding-top:2px!important;
+        padding-bottom: 2px
+
+    }
+    .headerStyle{
+        background-color: #0d47a1;
+        padding: 6px;
+        text-align: center;
+
+    }
+    .titleStle{
+        color: white;height: 4px;
+        text-align: center;
+
+    }
+    .table th{
+
+        padding: 6px!important;
+    }
+    .theader{
+        background-color: #bbe4fc;
+        line-height: 12px
+    }
+    .example-form {
+        min-width: 150px;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .example-full-width {
+        width: 100%;
+    }
+</style>
+
+<div class="container-fluid">
+
+    <div class="" style="font-family: Tahoma;direction: ltr;">
+
+        <div class="col-12 mt-2 headerStyle ">
+            <h5 class="titleStle" >New Prescription</h5>
+        </div>
+
+        <div style="display: flex"  class="border col-12"  style="font-size: 17px; border-color: black ;padding:0 ">
+            <div class="form-group">
+                <form action="" name="myform" (ngSubmit)="sendData($event)">
+                    <div class="col-12 d-flex mt-2">
+                        <mat-form-field  class="example-full-width col-4">
+                            <input name="drugName" type="text"  class="form-control" style="text-align: left"  matInput (input)="onSearchChange($event)" value="{{value}}" />
+                            <ul style="text-align: left;height: 150px;overflow-x:hidden;overflow-y: scroll ;list-style: none" *ngIf="serchlist.length >0" >
+                                <li (click)="set(i)" *ngFor="let i of serchlist">
+                                    <button style="border: none;background-color: #f5f7fa;font-size: 14px;text-align: left;" class="w-100"  >{{i}}</button>
+                                </li>
+                            </ul>
+
+                        </mat-form-field>
+
+
+                        <button class="btn mt-3 ml-1 " style="color: white!important;background-color: #f2911b;height: 36px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" (click)="GetDetails(content)"  width="30" height="30" fill="currentColor" class="bi bi-star-fill mt-3 ml-1" viewBox="0 0 16 16" style="cursor: pointer;color: red"  >
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                    </div>
+                    <div class="col-12 d-flex" style="background-color: transparent;flex-wrap: wrap">
+                        <div class="col-2   mt-2">
+                            <label for="name" class="mt-1 mr-1">Frequency: </label>
+                            <select #Frequency class="form-control" (change)='getFrequency(Frequency.value)' id="">
+                                <option value=""></option>
+                                <option value="bid">bid</option>
+                                <option value="qod"> qod </option>
+                                <option value="prn"> prn </option>
+                                <option value="q12"> q12 </option>
+                                <option value="q1-2"> q1-2 </option>
+                                <option value="qam"> qam </option>
+                                <option value="qpm"> qpm </option>
+                                <option value="qd "> qd </option>
+                                <option value="qid"> qid </option>
+                                <option value="tid"> tid </option>
+                                <option value="q3h"> q3h</option>
+                                <option value="q4h"> q4h </option>
+                                <option value="qw "> qw </option>
+                                <option value="ad lib."> ad lib. </option>
+                                <option value="stat."> stat. </option>
+                                <option value="TAD"> TAD </option>
+                                <option value="q"> q </option>
+
+
+
+                            </select>
+                        </div>
+                        <div class="col-2  mt-2">
+                            <label for="" class="mt-1 mr-1" >Dose: </label>
+                            <div class="d-flex">
+                                <input type="text" placeholder="unit"  class="form-control" name="doseText">
+                                <select #Dose class="form-control" (change)='getDose(Dose.value)' name="unit" id="fbf">
+                                    <option value=""></option>
+                                    <option value="mg">mg </option>
+                                    <option value="Tablet"> Tablet </option>
+                                    <option value="Capsule"> Capsule </option>
+                                    <option value="cc"> cc </option>
+                                    <option value="Puff"> Puff </option>
+                                    <option value="Drop"> Drop </option>
+                                    <option value="IU"> IU </option>
+                                    <option value="Inj."> Inj. </option>
+                                    <option value="Spoon"> Spoon </option>
+                                    <option value="Jamspoon"> Jamspoon </option>
+                                    <option value="Soupspoon"> Soupspoon </option>
+                                    <option value="ml"> ml </option>
+                                    <option value="qs"> qs </option>
+                                    <option value="tbsp"> tbsp </option>
+                                    <option value="tsp"> tsp </option>
+                                    <option value="u.d."> u.d. </option>
+                                    <option value="ss"> ss </option>
+                                    <option value="gr"> gr </option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-2  mt-2">
+                            <label for="name" class="mt-1 mr-1">Dose qualifier: </label>
+                            <div class="d-flex">
+                                <select #qualifier class="form-control" (change)="getQualifier(qualifier.value)" name="unit" id="e">
+                                    <option value=""></option>
+                                    <option value="ac">ac </option>
+                                    <option value="hs"> hs </option>
+                                    <option value="am">am</option>
+                                    <option value="pc"> pc </option>
+                                    <option value="pm"> pm </option>
+                                    <option value="w/f"> w/f </option>
+                                    <option value="int"> int </option>
+
+
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-2  mt-2">
+                            <label for="name" class="mt-1 mr-1" style="font-size: 10px">Site of administration: </label>
+                            <div class="d-flex">
+                                <select #administration (change)="getAdministration(administration.value)" class="form-control" name="unit" id="ee">
+                                    <option value=""></option>
+                                    <option value="AAA"> AAA </option>
+                                    <option value="ad"> ad </option>
+                                    <option value="al"> al </option>
+                                    <option value="au"> au </option>
+                                    <option value="od"> od </option>
+                                    <option value="os"> os </option>
+                                    <option value="ou"> ou </option>
+                                    <option value="SOB"> SOB </option>
+                                    <option value="SSRI"> SSRI </option>
+                                    <option value="bucc."> bucc. </option>
+                                    <option value="dil."> dil. </option>
+                                    <option value="w."> w. </option>
+                                    <option value="w/o"> w/o </option>
+                                    <option value="troch."> troch. </option>
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-2  mt-2">
+                            <label for="name" class="mt-1 mr-1">Duration: </label>
+                            <div class="d-flex">
+                                <input type="text" name="DurationText" placeholder="unit"  class="form-control">
+                                <select #Duration class="form-control" (change)="getDuration(Duration.value)" name="unit" id="jh">
+                                    <option value=""></option>
+                                    <option value="d">d </option>
+                                    <option value="m"> m </option>
+                                    <option value="y"> y </option>
+
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-2  mt-2">
+                            <label for="name" class="mt-1 mr-1">Dispense: </label>
+                            <div class="d-flex">
+                                <input type="text" name="dispenseText" placeholder="unit" class="form-control">
+                                <select #Dispense class="form-control" (change)="getDispense(Dispense.value)" name="unit" id="rf">
+                                    <option value=""></option>
+                                    <option value="#"># </option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-6 mt-2">
+                            <label for="name" class="mt-1 mr-1">Patient Directions: </label>
+                            <input type="text" placeholder="با مقدار زیاد اب" class="form-control " name="Direction" style="text-align: right">
+                        </div>
+                        <div class="col-3  mt-2">
+                            <label for="name" class="mt-1 mr-1"> Administration of route: </label>
+                            <div class="d-flex width-250" >
+                                <select #route1 class="form-control " (change)="getRoute(route1.value)"  name="unit" id="d" disabled>
+                                    <option value=""></option>
+                                    <option value="Oral">Oral </option>
+                                    <option value="Injection"> Injection </option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-1  mt-2">
+                            <label for="name" class="mt-1 mr-1"> DAW: </label>
+                            <div class="d-flex">
+                                <input type="checkbox" name="DAW" class="form-control mt-1 ml-2" style="width: 20px;height: 20px" >
+                            </div>
+                        </div>
+                        <div class="col-2  mt-4"  >
+                            <button class="btn btn-warning mt-2 orangeBtn"    > Add  Medication</button>                    </div>
+                    </div>
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered" style="padding: 0!important;margin: 0!important;">
+                    <thead>
+                    <tr  class="text-center theader">
+                        <th scope="col">#</th>
+                        <th scope="col">Drug name</th>
+                        <th scope="col">Frequency</th>
+                        <th scope="col"> route</th>
+                        <th scope="col">Dose</th>
+                        <th scope="col">Dose qualifier</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">ADMINISTRATION Site</th>
+                        <th scope="col">Dispense</th>
+                        <th scope="col"> Delete</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Favorite</th>
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr *ngFor="let i of listItem,let y=index">
+                        <th scope="row">{{y}}</th>
+                        <td >{{i['drugname']}}</td>
+                        <td class="text-center">{{i['Frequency']}}</td>
+                        <td class="text-center">{{i['route1']}}</td>
+                        <td class="text-center">{{i['doseText']}}</td>
+                        <td class="text-center">{{i['qualifier']}} </td>
+                        <td class="text-center">{{i['Duration']}}</td>
+                        <td class="text-center">{{i['Administration']}}</td>
+                        <td class="text-center">{{i['Dispense']}}  </td>
+                        <td style="cursor: pointer;color:#f2911b " class="text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+
+                        </td>
+                        <td style="cursor: pointer;color:#f2911b" class="text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>
+
+                        </td>
+                        <td style="cursor: pointer;color:#f2911b" class="text-center" (click)="favLIst()">
+                            <input type="checkbox"  >
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-12 border" style="margin: 0!important;padding: 0!important; background-color:#f0f9ff;height: 41px">
+            <button class="btn btn-warning mt-1 ml-1 " style="color: black!important;background-color:#bbe4fc!important; padding-top:2px!important;padding-bottom: 2px " [routerLink]="['/DoctorDashboard/drugRecord']" > Prescriptions Hx</button>
+            <button class="btn btn-primary mt-1 ml-1 " style="color: white!important; padding-top:2px!important;padding-bottom: 2px " (click)="savedata()"> Save</button>
+            <button class="btn btn-success mt-1 ml-1 " style="color: black!important; padding-top:2px!important;padding-bottom: 2px ">Save & Send</button>
+        </div>
+
+
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss" >
+    <div class="modal-header headerStyle d-flex justify-content-center   " style="font-family: Tahoma!important;text-align: center!important;" >
+        <h6 class="modal-title white titleStle">Favorite Test</h6>
+        <button type="button" class="close white" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" id="kbModal-body" style="font-family: Tahoma!important;" >
+        <table class="table table-bordered" style="padding: 0!important;margin: 0!important;">
+            <thead>
+            <tr style="background-color: #bbe4fc" class="text-center">
+                <th scope="col"></th>
+                <th scope="col">
+                    <input type="text" placeholder="Drug name" style="border: none;background-color: transparent">
+                </th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Dose</th>
+                <th scope="col">Dose qualifier</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Dispense</th>
+                <th scope="col"> Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of favariteList">
+                <th scope="row"><input type="checkbox"></th>
+                <td >{{item['drugname']}}</td>
+                <td class="text-center">Twice a day</td>
+                <td class="text-center">500 mg </td>
+                <td class="text-center">ac</td>
+                <td class="text-center">10 d</td>
+                <td class="text-center">20 # </td>
+                <td style="cursor: pointer;color:#f2911b " class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+
+                </td>
+
+            </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal-footer d-flex justify-content-start" style="font-family: Tahoma!important;">
+        <button class="btn orangeBtn ">Add</button>
+    </div>
+</ng-template>
+

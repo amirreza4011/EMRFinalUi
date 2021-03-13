@@ -1,0 +1,425 @@
+<style>
+    .headerStyle{
+        background-color: #0d47a1;
+        padding: 6px;
+        text-align: center
+
+    }
+    .titleStle{
+        color: white;
+        height: 4px;
+    }
+    tbody tr{
+        line-height: 10px!important;
+    }
+
+    .hover:hover{
+        color: orange;
+    }
+    .orangeBtn{
+        color: white!important;
+        background-color:#f2911b!important;
+        padding-top:2px!important;
+        padding-bottom: 2px
+    }
+    .example-form {
+        min-width: 150px;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .example-full-width {
+        width: 100%;
+    }
+
+
+
+
+
+</style>
+
+    <div class="container-fluid" style="direction: ltr!important;">
+        <app-patient-info  [visibility]="false"></app-patient-info>
+
+        <div class="d-flex col-12 border" style="padding: 0!important;">
+
+            <div class="col-6 " style="padding-right: 2px!important; margin: 0!important;padding-left: 0!important;">
+                <div class="col-12 headerStyle">
+                        <h5 class="titleStle" > Para clinic Orders :</h5>
+
+                </div>
+                <div class="col-12 d-flex mt-1 mb-2" >
+                    <div class="col-3">
+                        <label for="Para">Para clinic Category</label>
+                    </div>
+                    <div class="col-9">
+                        <select name="" id="Para" class="form-control">
+                            <option value="Laboratory">Laboratory</option>
+                            <option value="Pathology">Pathology</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-12 d-flex">
+<!--                    <div class="col-3">-->
+<!--                        <label for="name" class="mt-1 mr-1">Test name  </label>-->
+<!--                    </div>-->
+                    <div class="col-9 d-flex">
+                        <form action="" class="example-form">
+                            <mat-form-field  class="example-full-width">
+                                <input type="text" class="form-control"  matInput [formControl]="myControl "   (input)="onSearchChange($event)  " value="{{value}} " style="text-align: left">
+                                <ul style="text-align: left;height: 150px;overflow-x:hidden;overflow-y: scroll ;list-style: none" *ngIf="serchlist.length >0" >
+                                    <li *ngFor="let i of serchlist" (click)="set(i)">
+                                        <button style="border: none;background-color: #f5f7fa;font-size: 14px;text-align: left;">{{i}}</button>
+                                    </li>
+                                </ul>
+                            </mat-form-field>
+                        </form>
+<!--
+
+<!--                        <input class="form-control"  id="name"  autofocus placeholder="CBC,Diff">-->
+                        <button class="btn mt-3 ml-1  " style="color: white!important;background-color: #f2911b;height: 36px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                        <svg xmlns="http://www.w3.org/2000/svg" (click)="GetDetails(content)"  width="40" height="40" fill="currentColor" class="bi bi-star-fill mt-3 ml-1" viewBox="0 0 16 16" style="cursor: pointer;color: red"  >
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+<!--                        <ul class="list-group list-group-flush">-->
+<!--                            &lt;!&ndash; results of ngFor is passed to appFilter with argument searchText &ndash;&gt;-->
+<!--                            <li class="list-group-item">-->
+<!--                                dfgdfg-->
+<!--                            </li>-->
+<!--                        </ul>-->
+                    </div>
+                </div>
+                <div class="col-12">
+
+                </div>
+                <div class="col-12 mt-2">
+                    <h5 style="background-color: #bbe4fc;margin: 0!important;padding: 0!important;text-align: center" class="w-100 mt-2" > Test order</h5>
+                    <table class="table table-bordered">
+                        <tbody style="cursor: pointer">
+                        <tr >
+                            <td scope="row" class="hover"  >
+                                CBC,Diff
+
+                            </td>
+                            <td>Na</td>
+                            <td>test 5</td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td>K</td>
+                            <td>test 4</td>
+                            <td>test 6</td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="col-6 " style="padding: 0!important; margin: 0!important;">
+                <div class="headerStyle">
+                    <h5 class="titleStle" >Test History :</h5>
+                </div>
+
+                <table class="table">
+                    <thead>
+                    <tr style="line-height: 12px">
+                        <th scope="col">Test name</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>CBC,Diff</td>
+                        <td>1398/11/05</td>
+                    </tr>
+                    <tr>
+                        <td>CBC,Diff</td>
+                        <td>1399/08/08</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div  style="font-family: Tahoma;direction: ltr;">
+                    <div class="col-12 mt-1 headerStyle" >
+                        <h5 class="titleStle"  >Observation </h5>
+                    </div>
+                    <div class="col-12 w-100 mt-1">
+
+                            <input type="checkbox" class="mr-2" id="All Orders">
+                            <label for="All Orders">All Orders</label>
+                            <input type="checkbox" class="mr-2" id="Latest Order" style="  border-radius: 50%;!important;">
+                            <label for="All Orders">Latest Order</label>
+                            <input type="checkbox" class="mr-2" id="Last Week">
+                            <label for="All Orders">Last Week</label>
+                            <input type="checkbox" class="mr-2" id="Last Month">
+                            <label for="All Orders">Last Month</label>
+                            <input type="checkbox" class="mr-2" id="Last Year">
+                            <label for="All Orders">Last Year</label>
+                    </div>
+                  <div class="col-12">
+                      <table class="table table-bordered" style="margin: 0!important;padding: 0!important;">
+                          <thead>
+                          <tr>
+                              <th scope="col">
+                                  <input type="checkbox">
+                              </th>
+                              <th scope="col">Hematology</th>
+                              <th scope="col">
+                                  <input type="checkbox">
+                              </th>
+                              <th scope="col">Biochemistry</th>
+                              <th scope="col">
+                                  <input type="checkbox">
+                              </th>
+                              <th scope="col">Immunology/Serology</th>
+                              <th scope="col">
+                                  <input type="checkbox">
+                              </th>
+                              <th scope="col">Urinalysis</th>
+                              <th scope="col">
+                                  <input type="checkbox">
+                              </th>
+                              <th scope="col">Microbiology</th>
+                              <th scope="col">
+                                  <input type="checkbox">
+                              </th>
+                              <th scope="col">Parasitology</th>
+                              <th scope="col">
+                                  <input type="checkbox">
+                              </th>
+                              <th scope="col">Virology</th>
+                              <th scope="col">
+                                  <input type="checkbox">
+                              </th>
+                              <th scope="col">Toxicology</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+<!--                          <tr>-->
+<!--                              <th scope="row">  <input type="checkbox"></th>-->
+<!--                              <td></td>-->
+
+<!--                          </tr>-->
+<!--                          <tr>-->
+<!--                              <th scope="row">  <input type="checkbox"></th>-->
+<!--                              <td></td>-->
+
+<!--                          </tr>-->
+<tr>
+    <td ><input type="checkbox"></td>
+    <td>PT</td>
+    <td><input type="checkbox"></td>
+    <td>Na</td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+</tr>
+<tr>
+    <td ><input type="checkbox"></td>
+    <td>PTT</td>
+    <td><input type="checkbox"></td>
+    <td>K</td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+</tr>
+<tr>
+    <td ><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td>FBS</td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+</tr>
+<tr>
+    <td ><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+</tr>
+<tr>
+    <td ><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+</tr>
+<tr>
+    <td ><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+    <td><input type="checkbox"></td>
+    <td></td>
+</tr>
+                          </tbody>
+                      </table>
+
+                  </div>
+<div class="col-12 mt-1">
+    <button class="btn orangeBtn ">
+    Favorite Trend
+    </button>
+    <button class="btn orangeBtn ml-2 " [routerLink]="['/DoctorDashboard/showResult']">
+      Show Result
+    </button>
+</div>
+
+                </div>
+
+            </div>
+        </div>
+
+<!--        End labReq Page-->
+
+
+        <ng-template #content let-c="close" let-d="dismiss" >
+            <div class="modal-header headerStyle d-flex justify-content-center   " style="font-family: Tahoma!important;text-align: center!important;" >
+                <h6 class="modal-title white titleStle">Favorite Test</h6>
+                <button type="button" class="close white" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="kbModal-body" style="font-family: Tahoma!important;" >
+                <table class="table table-bordered" style="padding: 0!important;margin: 0!important;">
+                    <thead>
+                    <tr style="background-color: #bbe4fc" class="text-center">
+                        <th scope="col"></th>
+                        <th scope="col">
+                            <input type="text" placeholder="Drug name" style="border: none;background-color: transparent">
+                        </th>
+                        <th scope="col">Frequency</th>
+                        <th scope="col">Dose</th>
+                        <th scope="col">Dose qualifier</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Dispense</th>
+                        <th scope="col"> Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row"><input type="checkbox"></th>
+                        <td >penicillin</td>
+                        <td class="text-center">Twice a day</td>
+                        <td class="text-center">500 mg </td>
+                        <td class="text-center">ac</td>
+                        <td class="text-center">10 d</td>
+                        <td class="text-center">20 # </td>
+                        <td style="cursor: pointer;color:#f2911b " class="text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row"><input type="checkbox"></th>
+
+                        <td>Acetaminophen</td>
+                        <td class="text-center">Once a day</td>
+                        <td class="text-center">1 tablet </td>
+                        <td class="text-center">od</td>
+                        <td class="text-center">1 m</td>
+
+                        <td class="text-center">10 # </td>
+                        <td style="cursor: pointer;color:#f2911b" class="text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+
+                        </td>
+
+
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-start" style="font-family: Tahoma!important;">
+                <button class="btn orangeBtn ">Add</button>
+            </div>
+        </ng-template>
+
+    </div>
+
+
+
+
